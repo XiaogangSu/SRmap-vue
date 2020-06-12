@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div id = "map" v-show="mapshow"></div>
+    <div id = "map"></div>
     <login id="loginid" @tokenVar="gettoken" @codeVar="getcode"></login>
-    
+    <search id="search"  v-show="searchshow" @isshow="searchui"></search>
     <router-view/>
   </div>
 </template>
@@ -11,16 +11,18 @@
 import mapboxgl from "mapbox-gl";
 import axios from "axios";
 import Login from "./views/login.vue"
+import Search from "./views/search.vue"
 export default {
   name: "mapbox_test",
   components:{
-    Login
+    Login,
+    Search
   },
   data() {
     return {
       stylejson: "",
       instance: null,
-      mapshow:true,
+      searchshow:false,
       token:'',
       code:''
     };
@@ -61,6 +63,9 @@ export default {
     getcode(msg){
       this.code=msg
       // console.log('CODE:',this.code)
+    },
+    searchui(){
+      console.log('search code:',this.code)
     }
   }
 };
@@ -76,5 +81,9 @@ export default {
   height: 100%;
   z-index: -1;
 }
-
+#search{
+  position:absolute;
+  top:0px;
+  width:100%;
+}
 </style>
