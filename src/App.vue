@@ -62,7 +62,7 @@
             container: "map",
             style: "mapbox://styles/mapbox/streets-v9",
             // style: this.GLOBAL.style,
-            // style: '/style/style_SRmap.json',
+            // style: stylejson,
             center: [116.36511, 39.93896], // 设置地图中心
             zoom: 12 // 设置地图比例
           });
