@@ -55,23 +55,26 @@
           baseUrl: "http://localhost:8080/",
           timeout: "1000"
         });
-        this.instance.get("./style/style_SRmap.json").then(res => {
+        this.instance.get("./style/osmstyle.json").then(res => {
           this.GLOBAL.style = res.data;
           console.log('style:', this.GLOBAL.style)
           let map = new mapboxgl.Map({
             container: "map",
-            style: "mapbox://styles/mapbox/streets-v9",
-            // style: this.GLOBAL.style,
+            // style: "mapbox://styles/mapbox/streets-v9",
+            style: this.GLOBAL.style,
             // style: stylejson,
             center: [116.36511, 39.93896], // 设置地图中心
             zoom: 12 // 设置地图比例
           });
-          console.log('map:',map)
-          a=map.getStyle().layers
-          console.log('a:',a)
+          // console.log('map:',map)
+          // a=map.getStyle().layers
+          // console.log('a:',a)
           // this.$root.map = map
-          // this.GLOBAL.setAmap(map);
-          // console.log(this.GLOBAL.getlayer())
+          console.log('version:',map.version)
+          this.GLOBAL.setAmap(map);
+          let a=map.getStyle()
+          console.log('a=',a)
+          // this.GLOBAL.getlayer()
         });
       },
       gettoken(msg) {
