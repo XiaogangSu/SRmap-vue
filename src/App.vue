@@ -66,8 +66,12 @@
             center: [116.36511, 39.93896], // 设置地图中心
             zoom: 12 // 设置地图比例
           });
+          console.log('map:',map)
+          a=map.getStyle().layers
+          console.log('a:',a)
           // this.$root.map = map
-          this.GLOBAL.setAmap(map);
+          // this.GLOBAL.setAmap(map);
+          // console.log(this.GLOBAL.getlayer())
         });
       },
       gettoken(msg) {

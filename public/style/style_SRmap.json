@@ -23,7 +23,7 @@
             "tiles": ["http://121.199.14.136:5000/mvt/test/{z}/{x}/{y}.mvt"]
         }
     },
-    "sprite": "./icon/sprite/sprite",
+    "sprite": "./style/icon/sprite/sprite",
     "glyphs": "mapbox://fonts/xgar/{fontstack}/{range}.pbf",
     "layers": [
         {

@@ -11,4 +11,15 @@ export default {
     setAmap(newmap) {
         this.map = newmap
     },
+    // getlayer() {
+    //     console.log('map:',this.map)
+    //     console.log('map:',this.map.getLayer())
+    //     let layers = this.map.getStyle().layers;
+    //     console.log('test1')
+    //     let layerid = [];
+    //     for (let i = 0; i < layers.length; i++) {
+    //         layerid.push(layers[i]['id']);
+    //     }
+    //     return (layerid);
+    // }
 }
