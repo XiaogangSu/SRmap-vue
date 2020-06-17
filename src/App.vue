@@ -32,15 +32,6 @@
       };
     },
     created() {
-      console.log("1");
-      this.instance = axios.create({
-        baseUrl: "http://localhost:8080/",
-        timeout: "1000"
-      });
-      this.instance.get("./style/style_SRmap.json").then(res => {
-        this.stylejson = res.data;
-        console.log("2");
-      });
     },
     mounted() {
       this.loadmap();
