@@ -8,19 +8,26 @@ export default {
     registerurl: registerurl,
     map: "",
     style: "",
+    layerid: [],
     setAmap(newmap) {
         this.map = newmap
     },
-    getlayer() {
+    getlayerid(map) {
         // console.log('map:',this.map)
-        let stylejson = this.map.getStyle()
-        console.log('mapstyle:',stylejson)
-        let layers = this.map.getStyle().layers;
-        console.log('test1')
-        let layerid = [];
-        for (let i = 0; i < layers.length; i++) {
-            layerid.push(layers[i]['id']);
-        }
-        return (layerid);
+        console.log('test')
+        map.on("load", () => {
+            let layers = map.getStyle().layers;
+            console.log("layers:", layers);
+            // let layerid = [];
+            for (let i = 0; i < layers.length; i++) {
+                this.layerid.push(layers[i]['id']);
+            }
+        });
+    },
+    addimg1(map) {
+        map.loadImage('./style/icon/begin2.png', function (error, image) {
+            if (error) throw error;
+            if (!map.hasImage('startimg')) map.addImage('startimg', image);
+        })
     }
 }

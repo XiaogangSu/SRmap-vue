@@ -45,8 +45,9 @@
     methods: {
       startonclick (e) {
         let nowcor = e.lngLat;
-        $("#startpoint").val(nowcor.lat.toFixed(7) + ',' + nowcor.lng.toFixed(7));
-        var layerids = getlayer();
+        console.log('nowcor:',nowcor)
+        this.startcor=nowcor.lat.toFixed(7) + ',' + nowcor.lng.toFixed(7);
+        let layerids = this.GLOBAL.layerids;
         console.log(layerids);
         //检查起始点图层是否存在，若存在则删除
         for (var i = 0; i < layerids.length; i++) {
@@ -55,7 +56,7 @@
             map.removeSource(layerids[i]);
           }
         }
-        var startjson = {
+        let startjson = {
           'type': 'FeatureCollection',
           'features': [{
             'type': 'Feature',
@@ -69,12 +70,12 @@
             }
           }]
         }
-        map.addSource('startpoint', {
+        this.GLOBAL.map.addSource('startpoint', {
           'type': "geojson",
           'data': startjson
         });
 
-        map.addLayer({
+        this.GLOBAL.map.addLayer({
           'id': "startpoint",
           'type': 'symbol',
           'source': 'startpoint',
@@ -86,15 +87,17 @@
         return (nowcor);
       },
       startbtn: function () {
-        this.startcor = 'zzzzzzzzzzz'
         let map = this.GLOBAL.map
-        map.on('click', function (e) {
-          this.startcor = "zzzzzzzz"
-          let nowcor = e.lngLat;
-          console.log(nowcor)
-          this.startcor = nowcor.lng
-          console.log(nowcor.lng)
-        });
+        this.GLOBAL.getlayerid(map)
+        this.GLOBAL.addimg1(map)
+        // console.log('ids:',this.GLOBAL.layerids)
+        // map.on('click', (e)=> {
+        //   this.startcor = "zzzzzzzz"
+        //   let nowcor = e.lngLat;
+        //   this.startcor = nowcor.lng
+        //   console.log(nowcor.lng)
+        // });
+        map.on('click', this.startonclick)
       },
       endbtn: function () {
 
