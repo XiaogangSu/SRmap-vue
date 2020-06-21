@@ -78,6 +78,8 @@
           let code = res.data.code
           // console.log('code:', code)
           let token = res.data.token
+          this.GLOBAL.token = token
+          // this.GLOBAL.logincode = code
           this.$emit('tokenVar', token)
           this.$emit('codeVar', code)
           console.log('token:', token)

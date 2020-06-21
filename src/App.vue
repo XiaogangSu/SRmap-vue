@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="map"></div>
-    <login id="loginid" @tokenVar="gettoken" @codeVar="getcode"></login>
-    <search id="search" :logo="searchshow"></search>
+    <login id="loginid" @codeVar="getcode"></login>
+    <funlogo id='logo' :logoshow="logoshow" @showVar="get_showvar"></funlogo>
+    <search id="search" v-show="searchshow" ></search>
+    <!-- <search id="search" v-show="searchshow" ></search> -->
     <route id="route" :logo="routeshow"></route>
     <router-view />
   </div>
@@ -14,12 +16,15 @@ import axios from "axios";
 import Login from "./views/login.vue";
 import Search from "./views/search.vue";
 import Route from "./views/route.vue";
+import Funlogo from "./views/funlogo.vue"
+
 export default {
   name: "mapbox_test",
   components: {
     Login,
     Search,
-    Route
+    Route,
+    Funlogo
   },
   data() {
     return {
@@ -27,8 +32,10 @@ export default {
       instance: null,
       token: "",
       code: "",
+      logoshow: false,
       searchshow: false,
-      routeshow: false
+      routeshow: false,
+      showvar:""
     };
   },
   created() {},
@@ -38,7 +45,7 @@ export default {
   },
   methods: {
     loadmap() {
-      let url = "/style/style.json";
+      let url = "/style/style_SRmap.json";
       mapboxgl.accessToken =
         "pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw";
       this.instance = axios.create({
@@ -62,28 +69,51 @@ export default {
         // this.$root.map = map
         console.log("version:", map.version);
         this.GLOBAL.setAmap(map);
-        // this.GLOBAL.getlayerid(map);
-        // console.log('id:',this.GLOBAL.layerid)
-        // map.on("load", () => {
-        //   let a = map.getStyle().layers;
-        //   console.log("a=", a);
-        // });
+        // this.GLOBAL.map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+        //添加
+        map.loadImage("./style/icon/begin2.png", function(error, image) {
+          if (error) throw error;
+          if (!map.hasImage("startimg")) map.addImage("startimg", image);
+        });
+        map.loadImage("./style/icon/end2.png", function(error, image) {
+          if (error) throw error;
+          if (!map.hasImage("endimg")) map.addImage("endimg", image);
+        });
+        map.loadImage("./style/icon/position.png", function(error, image) {
+          if (error) throw error;
+          if (!map.hasImage("positionimg")) map.addImage("positionimg", image);
+        });
+        map.loadImage("./style/icon/poi.png", function(error, image) {
+          if (error) throw error;
+          if (!map.hasImage("poiImg")) map.addImage("poiImg", image);
+        });
 
-        // this.GLOBAL.getlayer()
       });
     },
-    gettoken(msg) {
-      this.token = msg;
-      // console.log("TOKEN:",this.token)
-    },
+    // gettoken(msg) {
+    //   this.token = msg;
+    //   // console.log("TOKEN:",this.token)
+    // },
     getcode(msg) {
       this.code = msg;
       console.log(this.code, typeof this.code);
       if (this.code == 0) {
-        this.searchshow = true;
-        this.routeshow = true;
+        // this.searchshow = true;
+        // this.routeshow = true;
+        this.logoshow = true;
       }
       // console.log('CODE:',this.code)
+    },
+    get_showvar(msg){
+      this.showvar = msg
+      console.log('showvar:',msg)
+      if (this.showvar==0){
+        this.searchshow=true
+        this.routeshow=false
+      }else if(this.showvar==1){
+        this.searchshow=false
+        this.routeshow=true
+      }
     }
   }
 };
@@ -100,15 +130,20 @@ export default {
   z-index: -1;
 }
 
-#search {
+/* #search {
   position: absolute;
   top: 0px;
   width: 100%;
-}
+} */
 
-#route {
+/* #route {
   position: absolute;
   top: 54px;
   width: 100%;
+} */
+#logo{
+  position: absolute;
+  top:30%;
+  left:5px;
 }
 </style>
