@@ -4,8 +4,8 @@
     <login id="loginid" @codeVar="getcode"></login>
     <funlogo id='logo' :logoshow="logoshow" @showVar="get_showvar"></funlogo>
     <search id="search" v-show="searchshow" ></search>
-    <!-- <search id="search" v-show="searchshow" ></search> -->
     <route id="route" :logo="routeshow"></route>
+    <loc id='loc'></loc>
     <router-view />
   </div>
 </template>
@@ -17,6 +17,7 @@ import Login from "./views/login.vue";
 import Search from "./views/search.vue";
 import Route from "./views/route.vue";
 import Funlogo from "./views/funlogo.vue"
+import Loc from './views/loc.vue'
 
 export default {
   name: "mapbox_test",
@@ -24,7 +25,8 @@ export default {
     Login,
     Search,
     Route,
-    Funlogo
+    Funlogo,
+    Loc
   },
   data() {
     return {
@@ -145,5 +147,10 @@ export default {
   position: absolute;
   top:30%;
   left:5px;
+}
+#loc{
+  position: absolute;
+  bottom:3px;
+  right:3px;
 }
 </style>

@@ -7,14 +7,6 @@ import Globalvar from './api/glabal_var.js'
 Vue.config.productionTip = false
 Vue.prototype.GLOBAL = Globalvar
 
-Vue.prototype.getlayer=function () {
-  let layers = map.getStyle().layers;
-  let layerid = [];
-  for (let i = 0; i < layers.length; i++) {
-      layerid.push(layers[i]['id']);
-  }
-  return (layerid);
-}
 
 new Vue({
   router,
