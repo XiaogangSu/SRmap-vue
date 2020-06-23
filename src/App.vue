@@ -108,7 +108,7 @@ export default {
     },
     get_showvar(msg){
       this.showvar = msg
-      console.log('showvar:',msg)
+      // console.log('showvar:',msg)
       if (this.showvar==0){
         this.searchshow=true
         this.routeshow=false

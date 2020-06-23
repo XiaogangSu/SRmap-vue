@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import BaiduMap from "vue-baidu-map";
+// import BaiduMap from "vue-baidu-map";
 import Vue from "vue";
-Vue.use(BaiduMap, {
-  ak: "Aqok0orEcbo2jt2vMtGZPU3KGDE9hK8O"
-});
+// Vue.use(BaiduMap, {
+//   ak: "Aqok0orEcbo2jt2vMtGZPU3KGDE9hK8O"
+// });
 
 export default {
   methods: {
