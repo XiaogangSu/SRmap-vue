@@ -143,6 +143,9 @@ export default {
   top: 54px;
   width: 100%;
 } */
+#route{
+  background-color:#FFFFFF;
+}
 #logo{
   position: absolute;
   top:30%;

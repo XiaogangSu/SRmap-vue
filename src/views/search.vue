@@ -1,6 +1,6 @@
 <template>
   <div v-show="logo">
-    <van-search show-action label="地址" placeholder="请输入搜索关键词" v-model="searchvalue" background='rgba(74,144,226,0.7)'  @search="onSearch">
+    <van-search show-action label="地址" placeholder="请输入搜索关键词" v-model="searchvalue" background='#FFFFFF'  @search="onSearch">
       <template #action>
         <div @click="onSearch">搜索</div>
       </template>
