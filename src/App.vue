@@ -3,8 +3,9 @@
     <div id="map"></div>
     <login id="loginid" @codeVar="getcode"></login>
     <funlogo id='logo' :logoshow="logoshow" @showVar="get_showvar"></funlogo>
-    <search id="search" v-show="searchshow" ></search>
+    <search id="search" :logo="searchshow"></search>
     <route id="route" :logo="routeshow"></route>
+    <poi id="poi" :logo="poishow"></poi>
     <loc id='loc'></loc>
     <router-view />
   </div>
@@ -18,6 +19,7 @@ import Search from "./views/search.vue";
 import Route from "./views/route.vue";
 import Funlogo from "./views/funlogo.vue"
 import Loc from './views/loc.vue'
+import Poi from './views/poi.vue'
 
 export default {
   name: "mapbox_test",
@@ -26,7 +28,8 @@ export default {
     Search,
     Route,
     Funlogo,
-    Loc
+    Loc,
+    Poi
   },
   data() {
     return {
@@ -37,6 +40,7 @@ export default {
       logoshow: false,
       searchshow: false,
       routeshow: false,
+      poishow: false,
       showvar:""
     };
   },
@@ -47,7 +51,7 @@ export default {
   },
   methods: {
     loadmap() {
-      let url = "/style/style_SRmap.json";
+      let url = "/style/style.json";
       mapboxgl.accessToken =
         "pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw";
       this.instance = axios.create({
@@ -112,9 +116,15 @@ export default {
       if (this.showvar==0){
         this.searchshow=true
         this.routeshow=false
+        this.poishow=false
       }else if(this.showvar==1){
         this.searchshow=false
         this.routeshow=true
+        this.poishow=false
+      }else if(this.showvar==2){
+        this.searchshow=false
+        this.routeshow=false
+        this.poishow=true
       }
     }
   }
