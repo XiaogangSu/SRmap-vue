@@ -6,7 +6,8 @@
     </div>
 
     <button class="a-upload" function="getpic()">
-      <input id="take_photo" type="file" multiple accept="image/*" capture="camera" />
+      <!-- <input id="take_photo"  type="file" multiple accept="image/*" capture="camera" /> -->
+      <input id='take_photo' type='file' accept='image/*' name='file' @change='filechange()' />
     </button>
 
     <table id="poi_info" border="0">
@@ -15,7 +16,7 @@
           <label>Name:</label>
         </th>
         <th align="left">
-          <input id="poiname" type="text" value="Navinfo" />
+          <input id="poiname" type="text" v-model="poiname_val" />
         </th>
       </tr>
       <tr>
@@ -23,7 +24,7 @@
           <label>Address:</label>
         </th>
         <th align="left">
-          <input id="poiaddress" type="text" value="Beijing Haidian" />
+          <input id="poiaddress" type="text" v-model="address_val" />
         </th>
       </tr>
       <tr>
@@ -31,7 +32,7 @@
           <label>Type:</label>
         </th>
         <th align="left">
-          <input id="poitype" type="text" value="Company" />
+          <input id="poitype" type="text" v-model="type_val" />
         </th>
       </tr>
       <tr>
@@ -39,7 +40,7 @@
           <label>Phone:</label>
         </th>
         <th align="left">
-          <input id="poiphone" type="text" value="18310870157" />
+          <input id="poiphone" type="text" v-model="phone_val" />
         </th>
       </tr>
       <tr>
@@ -52,7 +53,7 @@
       </tr>
       <tr>
         <th align="right">
-          <button type="button" id="subpoi" class="poi_btn" onclick="subpoi()">Finish</button>
+          <button type="button" id="subpoi" class="poi_btn" @click="subpoi">Finish</button>
         </th>
       </tr>
     </table>
@@ -63,7 +64,11 @@
 export default {
   data() {
     return {
-      poicor:""
+      poicor:"",
+      poiname_val:'Navinfo',
+      address_val:'北京市海淀区永丰路',
+      type_val:'公司',
+      phone_val:'18310870157'
     };
   },
   props: ["logo"],
@@ -122,6 +127,28 @@ export default {
       // map.off("click", endonclick);
       // map.off("click", startonclick);
       map.on("click", this.locpoi_click);
+    },
+    subpoi: function(){
+      console.log('sub poi info!');
+      console.log("token:", this.GLOBAL.token);
+      let name = this.poiname_val;
+      let type = this.type_val;
+      let address = this.address_val;
+      let phone = this.phone_val;
+      let loc = this.poicor;   //string
+      let cor = new Array();
+      cor[0] = parseFloat(loc.split(",")[1]);
+      cor[1] = parseFloat(loc.split(",")[0]);
+      let poigj = {"type":"Point","coordinates":cor}
+      if (photo==''||name==''||type==''||loc=='') {
+        alert("Missing poi information!")
+      }
+      else{
+        let formData = new FormData();
+        // let file = $("#take_photo")[0].files[0];
+        formData.append("file", file);
+        let md5list = new Array();
+      }
     }
   }
 };
