@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     loadmap() {
-      let url = "/style/style.json";
+      let url = "/style/style_SRmap.json";
       mapboxgl.accessToken =
         "pk.eyJ1IjoieGdhciIsImEiOiJjajh0dmpmenAwdGhqMndwMHo5ZDZua2E0In0.9CB46jBTn_gALav67l74yw";
       this.instance = axios.create({

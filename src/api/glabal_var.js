@@ -4,11 +4,12 @@
 
 const loginurl = 'http://121.199.14.136:5001/auth/get_token'
 const registerurl = 'http://121.199.14.136:5001/auth/register'
-const uppic = 'http://121.199.14.136:5001/dao/upload'
+const uppicurl = 'http://121.199.14.136:5001/dao/upload'
 
 export default {
     loginurl: loginurl,
     registerurl: registerurl,
+    uppicurl:uppicurl,
     map: "",
     style: "",
     token: "",
