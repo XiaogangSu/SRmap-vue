@@ -35,7 +35,7 @@
         {
             "id": "baselayer",
             "type": "raster",
-            "source": "google-tiles"
+            "source": "osm-tiles"
         }
     ],
     "center": [116.23954113946161, 40.07172270765838],

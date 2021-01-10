@@ -50,8 +50,8 @@
     },
     data() {
       return {
-        user: 'liujishu002',
-        password: '123456',
+        user: 'admin',
+        password: 'password',
         isshow: true,
         // popup_isshow: false,
         // popup_noshow: false,
@@ -68,7 +68,12 @@
           password: this.password
         }
         console.log(data);
-        axios({
+        this.isshow=false
+        let code = 0
+        let token = 'tokenstring'
+        this.$emit('tokenVar', token)
+        this.$emit('codeVar', code)
+        /*axios({
           method: 'get',
           url: this.GLOBAL.loginurl,
           params: data
@@ -95,7 +100,7 @@
               // on close
             });
           }
-        })
+        })*/
       },
       signOn: function () {
         //register 函数
