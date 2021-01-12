@@ -92,7 +92,7 @@
           });
           console.log("version:", map.version);
           this.GLOBAL.setAmap(map);
-          // this.GLOBAL.map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+          // this.GLOBAL.map.addControl(new mapboxgl.NavigationControl(), "bottom-left");
           //添加
           map.loadImage("./style/icon/begin2.png", function (error, image) {
             if (error) throw error;

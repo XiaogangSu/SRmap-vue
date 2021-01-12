@@ -16,6 +16,11 @@
           <button id="addpoi" type="button" v-on:click="addpoi()"></button>
         </th>
       </tr>
+      <tr>
+        <th>
+          <button id="googlesat" type="button" v-on:click="showgooglsat()"></button>
+        </th>
+      </tr>
     </table>
   </div>
 </template>
@@ -41,7 +46,18 @@ export default {
     addpoi:function () {
       this.show_var = 2
       this.$emit('showVar', this.show_var)
+    },
+    showgooglsat:function(){
+      let allstyle=this.GLOBAL.map.getStyle()
+      let googlevisible = allstyle['layers'][1]['layout']['visibility']
+      console.log('visibility=',googlevisible)
+      if(googlevisible=='none'){
+        this.GLOBAL.map.setLayoutProperty("baselayer","visibility","visible")
+      }else{
+        this.GLOBAL.map.setLayoutProperty("baselayer","visibility","none")
+      }
     }
+
   },
 };
 </script>
@@ -55,6 +71,9 @@ export default {
 }
 #addpoi{
   background: url("../../public/style/icon/poi2.png") no-repeat;
+}
+#googlesat{
+  background: url("../../public/style/icon/layer.png") no-repeat;
 }
 #fun button {
   width: 30px;
@@ -75,6 +94,10 @@ export default {
     background-color: rgb(75, 88, 206);
 }
 #addpoi:hover {
+    /* background: #eee; */
+    background-color: rgb(75, 88, 206);
+}
+#googlesat:hover {
     /* background: #eee; */
     background-color: rgb(75, 88, 206);
 }

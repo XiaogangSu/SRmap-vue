@@ -28,12 +28,6 @@
                 "http://121.199.14.136:8085/satellite/{z}/{x}/{y}.jpg"
             ],
             "tileSize": 256
-        },
-        "mapbox-dem":{
-            "type": "raster-dem",
-            "url": "mapbox://mapbox.mapbox-terrain-dem-v1",
-            "tileSize": 512,
-            "maxzoom": 14
         }
     },
     "sprite": "http://localhost:8080/style/icon/sprite/sprite",
@@ -47,7 +41,8 @@
         {
             "id": "baselayer",
             "type": "raster",
-            "source": "google-tiles"
+            "source": "google-tiles",
+            "layout": {"visibility": "none"}
         },
         {
             "id": "SRmap landuse",
